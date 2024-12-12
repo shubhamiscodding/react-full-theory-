@@ -14,15 +14,15 @@ function Test() {
   return (
     <>
       {/* <CounterFunctional /> */}
-      <CounterClass />
-      {/* <State />
+      {/* <CounterClass /> */}
+      {/* <State /> */}
       <Effect />
-      <Reducer />
-      <LayoutEffect />
-      <Ref />
-      <Context />
-      <Memo />
-      <CallBack /> */}
+      {/* <Reducer /> */}
+      {/* <LayoutEffect /> */}
+      {/* <Ref /> */}
+      {/* <Context /> */}
+      {/* <Memo /> */}
+      {/* <CallBack /> */}
     </>
   );
 }
