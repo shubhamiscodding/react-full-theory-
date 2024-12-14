@@ -2,7 +2,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import Meal from './parts/Home/Meal.jsx';
-import Cocktail from './parts/Cocktail.jsx';
+import Cocktail from './parts/Cocktail/Cocktail.jsx';
 import HarryPotter from './parts/HarryPotter.jsx';
 import Bank from './parts/Bank.jsx';
 

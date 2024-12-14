@@ -36,11 +36,11 @@ const Meal = () => {
     };
 
     const handleButtonClick = () => {
-        fetchMenu(searchQuery); // Pass the correct search query
+        fetchMenu(searchQuery); 
     };
 
     useEffect(() => {
-        fetchMenu(); // Fetch all meals initially
+        fetchMenu(); 
     }, []);
 
     return (

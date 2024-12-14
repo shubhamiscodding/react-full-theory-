@@ -1,0 +1,12 @@
+.alpha{
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    cursor: pointer;
+    background-color: black;
+    color: white;
+}
+.alpha-item{
+    background-color: blue;
+    /* border-radius: 10000px; */
+}
