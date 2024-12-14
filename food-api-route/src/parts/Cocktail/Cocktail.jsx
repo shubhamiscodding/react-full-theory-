@@ -1,15 +1,15 @@
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import "./Cocktail.css"
+import "./Cocktail.css";
 
 const Cocktail = () => {
     const [menu, setMenu] = useState([]);
-    const [selectalph , setSelectalph] = useState("");
-    const [searchQuery , setSearchQuery] = useState("");
+    const [selectalph, setSelectalph] = useState("");
+    const [searchQuery, setSearchQuery] = useState("");
 
     const fetchMenu = (query = "", selectalph = "") => {
         let url;
-    
+
         if (query) {
             url = `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${query}`;
         } else if (selectalph) {
@@ -17,7 +17,6 @@ const Cocktail = () => {
         } else {
             url = `https://www.thecocktaildb.com/api/json/v1/1/random.php`;
         }
-    
 
         fetch(url)
             .then((response) => {
@@ -58,8 +57,6 @@ const Cocktail = () => {
         }
     }, [selectalph]);
 
-
-
     return (
         <>
             <nav className="navbar">
@@ -99,7 +96,8 @@ const Cocktail = () => {
                     )}
                 </div>
             </div>
-             <div className="alpha">
+
+            <div className="alpha">
                 {["A", "B", "C", "D", "E", "F", "G"].map((letter) => (
                     <div key={letter} onClick={() => setSelectalph(letter)} className="alpha-item">
                         {letter}
