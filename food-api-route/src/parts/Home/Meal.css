@@ -4,6 +4,7 @@
   justify-content: center;
   margin: auto;
   position: relative;
+  padding-top: 80px;
   width: 100%;
   max-width: 500px;
 }
@@ -27,8 +28,8 @@
 }
 
 .search-button {
-  position: absolute;
-  right: 5px;
+  position: relative;
+  right: 50px;
   top: 30%;
   padding: 12px 15px;
   background-color: #007bff;
@@ -55,7 +56,6 @@
   margin: 10px;
   border-radius: 10px;
   background-color: white;
-  box-shadow: 10px 10px 10px lightsalmon;
 }
 
 .menu-list {

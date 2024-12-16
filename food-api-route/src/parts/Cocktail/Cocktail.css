@@ -6,7 +6,53 @@
     background-color: black;
     color: white;
 }
-.alpha-item{
-    background-color: blue;
-    /* border-radius: 10000px; */
+.alpha-item:hover{
+    background-color: rgb(74, 74, 130);
+    border-radius: 100%;
+    width: 20px;
+    text-align: center;
+}
+
+
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.popup-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 600px;
+    text-align: center;
+    overflow-y: auto;
+}
+
+.popup-content h2 {
+    margin-top: 0;
+}
+
+.popup-content img {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+}
+
+.close-popup {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    margin-top: 20px;
+    border-radius: 5px;
 }

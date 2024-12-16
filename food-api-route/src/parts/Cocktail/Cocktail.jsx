@@ -6,6 +6,8 @@ const Cocktail = () => {
     const [menu, setMenu] = useState([]);
     const [selectalph, setSelectalph] = useState("");
     const [searchQuery, setSearchQuery] = useState("");
+    const [selectedCocktail, setSelectedCocktail] = useState(null); // Store selected cocktail
+    const [showPopup, setShowPopup] = useState(false); // Control visibility of the popup
 
     const fetchMenu = (query = "", selectalph = "") => {
         let url;
@@ -32,7 +34,9 @@ const Cocktail = () => {
                         img: drink.strDrinkThumb,
                         title: drink.strDrink,
                         category: drink.strCategory,
-                        alcoholic: drink.strAlcoholic
+                        alcoholic: drink.strAlcoholic,
+                        instructions: drink.strInstructions,
+                        ingredients: getIngredients(drink)
                     }));
                     setMenu(drinkData);
                 } else {
@@ -43,8 +47,29 @@ const Cocktail = () => {
             .catch((error) => console.log("Error fetching data:", error));
     };
 
+    const getIngredients = (drink) => {
+        const ingredients = [];
+        for (let i = 1; i <= 15; i++) {
+            const ingredient = drink[`strIngredient${i}`];
+            if (ingredient) {
+                ingredients.push(ingredient);
+            }
+        }
+        return ingredients;
+    };
+
     const handleSearch = () => {
         fetchMenu(searchQuery);
+    };
+
+    const openPopup = (cocktail) => {
+        setSelectedCocktail(cocktail);
+        setShowPopup(true);
+    };
+
+    const closePopup = () => {
+        setShowPopup(false);
+        setSelectedCocktail(null);
     };
 
     useEffect(() => {
@@ -84,7 +109,7 @@ const Cocktail = () => {
                 <div className="menu-list">
                     {menu.length > 0 ? (
                         menu.map((item) => (
-                            <div key={item.id} className="menu-item">
+                            <div key={item.id} className="menu-item" onClick={() => openPopup(item)}>
                                 <img src={item.img} alt={item.title} />
                                 <h3>{item.title}</h3>
                                 <p>Category: {item.category}</p>
@@ -104,6 +129,25 @@ const Cocktail = () => {
                     </div>
                 ))}
             </div>
+
+            {showPopup && selectedCocktail && (
+                <div className="popup-overlay">
+                    <div className="popup-content">
+                        <button className="close-popup" onClick={closePopup}>Close</button>
+                        <h2>{selectedCocktail.title}</h2>
+                        <img src={selectedCocktail.img} alt={selectedCocktail.title} />
+                        <p><strong>Category:</strong> {selectedCocktail.category}</p>
+                        <p><strong>Alcoholic:</strong> {selectedCocktail.alcoholic}</p>
+                        <p><strong>Ingredients:</strong></p>
+                        <ul>
+                            {selectedCocktail.ingredients.map((ingredient, index) => (
+                                <li key={index}>{ingredient}</li>
+                            ))}
+                        </ul>
+                        <p><strong>Instructions:</strong> {selectedCocktail.instructions}</p>
+                    </div>
+                </div>
+            )}
         </>
     );
 };

@@ -1,10 +1,11 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import "./Meal.css";
 
 const Meal = () => {
     const [menu, setMenu] = useState([]);
     const [searchQuery, setSearchQuery] = useState("");
+    const navigate = useNavigate();
 
     const fetchMenu = (query = "") => {
         const baseQuery = query.trim() ? query : "";
@@ -25,10 +26,10 @@ const Meal = () => {
                         title: meal.strMeal,
                         category: meal.strCategory,
                         area: meal.strArea,
+                        instructions: meal.strInstructions, // Adding instructions
                     }));
                     setMenu(menuData);
                 } else {
-                    console.error("No meals found in the response.");
                     setMenu([]);
                 }
             })
@@ -37,6 +38,10 @@ const Meal = () => {
 
     const handleButtonClick = () => {
         fetchMenu(searchQuery); 
+    };
+
+    const handleRecipeClick = (item) => {
+        navigate(`/recipe/${item.title}`, { state: { item } }); 
     };
 
     useEffect(() => {
@@ -70,7 +75,11 @@ const Meal = () => {
                 <div className="menu-list">
                     {menu.length > 0 ? (
                         menu.map((item) => (
-                            <div key={item.id} className="menu-item">
+                            <div 
+                                key={item.id} 
+                                className="menu-item" 
+                                onClick={() => handleRecipeClick(item)}
+                            >
                                 <img src={item.img} alt={item.title} />
                                 <h3>{item.title}</h3>
                                 <p>Category: {item.category}</p>
